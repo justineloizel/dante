@@ -45,25 +45,24 @@ static int **fill_zero(int **map, infos_t *map_infos)
     return map;
 }
 
-int **load_map_int(infos_t *map_infos)
+void load_map_int(infos_t *map_infos)
 {
     int **map = NULL;
     index_t *index = malloc(sizeof(index_t));
-    // vérifier retur malloc des structures
 
     index->row = 0;
     map = malloc(sizeof(int *) * map_infos->nb_rows + 1);
     if (!map)
-        return NULL;
+        return;
     for (int m = 0; m < map_infos->nb_rows; m++) {
         map[m] = malloc(sizeof(int) * map_infos->nb_cols + 1);
         if (!map[m])
-            return NULL;
+            return;
     }
     map = fill_zero(map, map_infos);
     for (; index->row != map_infos->nb_rows; index->row++) {
         for (index->col = 0; index->col != map_infos->nb_cols; index->col++)
             map = modify_map(map, map_infos->map_str_tab, index);
     }
-    return map;
+    map_infos->map_int_tab = map;
 }

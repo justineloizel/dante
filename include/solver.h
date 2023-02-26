@@ -30,8 +30,10 @@ typedef struct indexes {
 } index_t;
 
 int solver(char *filepath);
+int fill_final_map(infos_t *map_infos, int row, int col);
+int find_shortest_path(infos_t *map_infos, int row, int col);
 char *load_file_in_str(char const *filepath);
-int **load_map_int(infos_t *map_infos);
+void load_map_int(infos_t *map_infos);
 int get_size(char *filepath);
 int get_nb_rows(char *filepath);
 int open_file(char const *filepath);
