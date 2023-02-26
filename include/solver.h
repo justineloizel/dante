@@ -21,7 +21,6 @@ typedef struct infos {
     int nb_rows;
     char **map_str_tab;
     int **map_int_tab;
-    char *map_str;
 } infos_t;
 
 typedef struct indexes {
@@ -38,6 +37,5 @@ int get_size(char *filepath);
 int get_nb_rows(char *filepath);
 int open_file(char const *filepath);
 char **load_map_char(char *filepath, infos_t *map_infos);
-int print_tab(int **tab, infos_t *map_infos);
 char **remove_end(char **map);
 #endif
