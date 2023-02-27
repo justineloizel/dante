@@ -9,18 +9,21 @@ MAKEFLAGS += -silent
 CC = gcc
 
 VPATH += src/
+VPATH += src/binary_tree
 
-SRC +=
+SRC += main.c
+SRC += generator.c
+SRC += binary_tree_algo.c
 
 CFLAGS = -I ../include/ -Wall -Wextra
 
-LDFLAGS = -L ../lib/
+LDFLAGS = -L ../lib/ -lmy -lprint
 
 BUILD_DIR = build/
 
 NAME = generator
 
-DEBUG ?= 0
+DEBUG ?= 1
 ifeq ($(DEBUG), 1)
 	CFLAGS += -g
 endif
