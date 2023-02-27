@@ -8,6 +8,7 @@
 	#define GENERATOR_H_
 int generator(int nb_line, int nb_column, int is_perfect);
 void create_perfect_maze(char **maze, int nb_line, int nb_column);
+void create_imperfect_maze(char **maze);
 
 typedef enum element {
     WALLS = 'X',

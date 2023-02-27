@@ -10,10 +10,12 @@ CC = gcc
 
 VPATH += src/
 VPATH += src/binary_tree
+VPATH += src/create_imperfect_maze
 
 SRC += main.c
 SRC += generator.c
 SRC += binary_tree_algo.c
+SRC += create_imperfect_maze.c
 
 CFLAGS = -I ../include/ -Wall -Wextra
 

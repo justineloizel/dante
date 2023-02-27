@@ -54,6 +54,11 @@ int generator(int nb_line, int nb_column, int is_perfect)
     if (maze == NULL)
         return 84;
     create_perfect_maze(maze, nb_line, nb_column);
+    if (is_perfect) {
+        my_puttab(maze);
+        return 0;
+    }
+    create_imperfect_maze(maze);
     my_puttab(maze);
     return 0;
 }
