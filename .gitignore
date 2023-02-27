@@ -11,4 +11,5 @@
 *.o
 *.a
 build/
-generator
+*.txt
+/generator/coding-style-reports.log
