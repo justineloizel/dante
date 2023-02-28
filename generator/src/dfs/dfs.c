@@ -9,7 +9,6 @@
 #include <time.h>
 #include "generator.h"
 #include "my.h"
-#include "myprintf.h"
 
 int verify_arround(char **maze, int i, int j)
 {
