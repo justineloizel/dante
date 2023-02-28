@@ -38,7 +38,7 @@ void delete_node(linked_list_t *list, node_t *target)
     node_t *node = list->tail;
 
     for (; node != NULL && node != target;
-           node = node->prev);
+        node = node->prev);
     if (node == NULL)
         return;
     if (list->head == node)

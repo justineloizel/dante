@@ -52,7 +52,8 @@ info->i -= 2;
 #define DIR_SOUTH maze[info->i + 1][info->j] = WAY,\
 maze[info->i + 2][info->j] = WAY,\
 info->i += 2;
-
+#define EAST_POS info->j < info->nb_column - 2
+#define SOUTH_POS info->i < info->nb_line - 2
 void delete_node(linked_list_t *list, node_t *target);
 void add_node(linked_list_t *list, int i, int j);
 void create_maze_with_dsf(char** maze, int nb_column, int nb_line);
