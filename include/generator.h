@@ -19,6 +19,12 @@ enum true_false {
     FALSE = 0,
     TRUE = 1
 };
+enum direction {
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST,
+};
 
 //DFS
 typedef struct node {
@@ -38,7 +44,7 @@ typedef struct info_pos {
     int j;
     int nb_line;
     int nb_column;
-    char *possibility_list;
+    int table_possibility[4];
 }info_pos_t;
 #define DIR_EAST maze[info->i][info->j + 1] = WAY,\
 maze[info->i][info->j + 2] = WAY, \

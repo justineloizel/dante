@@ -56,12 +56,8 @@ int generator(int nb_line, int nb_column, int is_perfect)
         return 84;
     }
     create_maze_with_dsf(maze, nb_column, nb_line);
-    if (is_perfect) {
-        my_puttab(maze);
-        free_tab(maze);
-        return 0;
-    }
-    create_imperfect_maze(maze);
+    if (!is_perfect)
+        create_imperfect_maze(maze);
     my_puttab(maze);
     free_tab(maze);
     return 0;

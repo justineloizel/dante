@@ -26,19 +26,19 @@ int verify_possibility(char **maze, info_pos_t *info)
     int possibility = 0;
 
     if (info->i >= 2 && verify_arround(maze, info->i - 2, info->j)) {
-        info->possibility_list = my_strcat(info->possibility_list, "north ");
+        info->table_possibility[possibility] = NORTH;
         possibility++;
     }
     if (SOUTH_POS && verify_arround(maze, info->i + 2, info->j)) {
-        info->possibility_list = my_strcat(info->possibility_list, "south ");
+        info->table_possibility[possibility] = SOUTH;
         possibility++;
     }
     if (info->j >= 2 && verify_arround(maze, info->i, info->j - 2)) {
-        info->possibility_list = my_strcat(info->possibility_list, "west ");
+        info->table_possibility[possibility] = WEST;
         possibility++;
     }
     if (EAST_POS && verify_arround(maze, info->i, info->j + 2)) {
-        info->possibility_list = my_strcat(info->possibility_list, "east ");
+        info->table_possibility[possibility] = EAST;
         possibility++;
     }
     return possibility;
@@ -48,21 +48,21 @@ void apply_choice(info_pos_t *info, int possibility, char **maze,
 linked_list_t *list_node)
 {
     int choice = rand() % possibility;
-    char **list = my_str_to_word_array(info->possibility_list, " ");
 
     if (possibility > 1)
         add_node(list_node, info->i, info->j);
-    if (my_strcmp(list[choice], "north") == 0)
+    if (info->table_possibility[choice] == NORTH)
         DIR_NORTH;
-    if (my_strcmp(list[choice], "south") == 0)
+    if (info->table_possibility[choice] == SOUTH)
         DIR_SOUTH;
-    if (my_strcmp(list[choice], "east") == 0)
+    if (info->table_possibility[choice] == EAST)
         DIR_EAST;
-    if (my_strcmp(list[choice], "west") == 0)
+    if (info->table_possibility[choice] == WEST)
         DIR_WEST;
-    free_tab(list);
-    free(info->possibility_list);
-    info->possibility_list = NULL;
+    info->table_possibility[0] = -1;
+    info->table_possibility[1] = -1;
+    info->table_possibility[2] = -1;
+    info->table_possibility[3] = -1;
 }
 
 void check_no_possibility(char **maze, info_pos_t *info, linked_list_t *list)
@@ -79,7 +79,7 @@ void check_no_possibility(char **maze, info_pos_t *info, linked_list_t *list)
 
 void create_maze_with_dsf(char** maze, int nb_column, int nb_line)
 {
-    info_pos_t info = {0, 0, nb_line, nb_column, NULL};
+    info_pos_t info = {0, 0, nb_line, nb_column, {-1, -1, -1, -1}, NULL};
     linked_list_t list = {NULL, NULL};
     int possibility = 0;
 
