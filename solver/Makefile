@@ -10,11 +10,16 @@ CC = gcc
 
 VPATH += src/
 
-SRC +=
+SRC += get_file_infos.c
+SRC += solver.c
+SRC += load_file_str.c
+SRC += load_map.c
+SRC += fill_final_map.c
+SRC += find_path.c
 
-CFLAGS = -I ../include/ -Wall -Wextra
+CFLAGS = -I ../include/ -Wall -Wextra -g
 
-LDFLAGS = -L ../lib/
+LDFLAGS = -L ../lib/ -lmy -lprint
 
 BUILD_DIR = build/
 
