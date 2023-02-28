@@ -15,6 +15,10 @@ typedef enum element {
     WAY = '*'
 }element_t;
 
+enum true_false {
+    FALSE = 0,
+    TRUE = 1
+};
 
 //DFS
 typedef struct node {
@@ -34,7 +38,21 @@ typedef struct info_pos {
     int j;
     int nb_line;
     int nb_column;
+    char *possibility_list;
 }info_pos_t;
+#define DIR_EAST maze[info->i][info->j + 1] = WAY,\
+maze[info->i][info->j + 2] = WAY, \
+info->j += 2;
+#define DIR_WEST maze[info->i][info->j - 1] = WAY,\
+maze[info->i][info->j - 2] = WAY,\
+info->j -= 2;
+#define DIR_NORTH  maze[info->i - 1][info->j] = WAY,\
+maze[info->i - 2][info->j] = WAY,\
+info->i -= 2;
+#define DIR_SOUTH maze[info->i + 1][info->j] = WAY,\
+maze[info->i + 2][info->j] = WAY,\
+info->i += 2;
+
 void delete_node(linked_list_t *list, node_t *target);
 void add_node(linked_list_t *list, int i, int j);
 void create_maze_with_dsf(char** maze, int nb_column, int nb_line);

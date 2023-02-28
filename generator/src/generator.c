@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include "generator.h"
 #include "my.h"
+#include "myprintf.h"
 
 char *fill_line(int nb_column, int line_object)
 {
@@ -51,8 +52,9 @@ int generator(int nb_line, int nb_column, int is_perfect)
 {
     char **maze = create_simple_map(nb_line, nb_column);
 
-    if (maze == NULL)
+    if (maze == NULL) {
         return 84;
+    }
 //    create_perfect_maze(maze, nb_line, nb_column);
 //    if (is_perfect) {
 //        my_puttab(maze);
