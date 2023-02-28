@@ -14,5 +14,29 @@ typedef enum element {
     WALLS = 'X',
     WAY = '*'
 }element_t;
+
+
+//DFS
+typedef struct node {
+    int i;
+    int j;
+    struct node *next;
+    struct node *prev;
+}node_t;
+
+typedef struct linked_list {
+    node_t *head;
+    node_t *tail;
+}linked_list_t;
+
+typedef struct info_pos {
+    int i;
+    int j;
+    int nb_line;
+    int nb_column;
+}info_pos_t;
+void delete_node(linked_list_t *list, node_t *target);
+void add_node(linked_list_t *list, int i, int j);
+void create_maze_with_dsf(char** maze, int nb_column, int nb_line);
 #endif /*GENERATOR_H_*/
 
