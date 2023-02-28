@@ -79,7 +79,7 @@ void check_no_possibility(char **maze, info_pos_t *info, linked_list_t *list)
 
 void create_maze_with_dsf(char** maze, int nb_column, int nb_line)
 {
-    info_pos_t info = {0, 0, nb_line, nb_column, {-1, -1, -1, -1}, NULL};
+    info_pos_t info = {0, 0, nb_line, nb_column, {-1, -1, -1, -1}};
     linked_list_t list = {NULL, NULL};
     int possibility = 0;
 
