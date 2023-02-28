@@ -28,7 +28,7 @@ BUILD_DIR = build/
 
 NAME = generator
 
-DEBUG ?= 1
+DEBUG ?= 0
 ifeq ($(DEBUG), 1)
 	CFLAGS += -g
 endif
