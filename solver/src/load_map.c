@@ -51,11 +51,11 @@ void load_map_int(infos_t *map_infos)
     index_t *index = malloc(sizeof(index_t));
 
     index->row = 0;
-    map = malloc(sizeof(int *) * map_infos->nb_rows + 1);
+    map = malloc(sizeof(int *) * (map_infos->nb_rows + 1));
     if (!map)
         return;
     for (int m = 0; m < map_infos->nb_rows; m++) {
-        map[m] = malloc(sizeof(int) * map_infos->nb_cols + 1);
+        map[m] = malloc(sizeof(int) * (map_infos->nb_cols + 1));
         if (!map[m])
             return;
     }

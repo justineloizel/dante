@@ -11,8 +11,10 @@ static int check_char(char **map, int i, int j)
 {
     for (; map[i][j] != '\n'; j++) {
         if (map[i][j] != '*' && map[i][j] != 'X' &&
-        map[i][j] != '\n' && map[i][j] != '\0')
+        map[i][j] != '\n' && map[i][j] != '\0') {
+            my_printf(" i = %i  j = %i-----%c\n", i, j, map[i][j]);
             return 1;
+        }
     }
     return 0;
 }
@@ -29,16 +31,19 @@ static int check_content(char **map)
     return 0;
 }
 
-static int get_nb_line(char *filepath, int nb_line)
+static int get_nb_line(char *filepath)
 {
     FILE *fp;
     size_t len = 0;
     char *line = NULL;
-    ssize_t read;
+    int nb_line = 0;
 
     fp = fopen(filepath, "r");
-    while ((read = getline(&line, &len, fp)) != -1)
+    while ((getline(&line, &len, fp)) != -1) {
         nb_line += 1;
+        free(line);
+        line = NULL;
+    }
     fclose(fp);
     return nb_line;
 }
@@ -60,18 +65,19 @@ char **load_map_char(char *filepath, infos_t *map_infos)
     FILE *fp;
     size_t len = 0;
     char *line = NULL;
-    ssize_t read;
     int nb_line = 0;
 
-    nb_line = get_nb_line(filepath, nb_line);
+    nb_line = get_nb_line(filepath);
     map_infos->nb_rows = nb_line;
     fp = fopen(filepath, "r");
-    map = malloc(sizeof(char *) * nb_line + 8);
-    while ((read = getline(&line, &len, fp)) != -1) {
-        map[i] = my_strdup(line);
+    map = malloc(sizeof(char *) * (nb_line + 1));
+    while ((getline(&line, &len, fp)) != -1) {
+        map[i] = line;
+        line = NULL;
         i++;
     }
     map[i] = NULL;
     map = check_errors(map);
+    fclose(fp);
     return map;
 }
