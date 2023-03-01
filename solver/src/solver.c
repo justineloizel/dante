@@ -7,16 +7,25 @@
 
 #include "solver.h"
 
+int check_map_size(infos_t *map, char **test)
+{
+    int len = map->nb_cols;
+
+    for (int i = 0; test[i] != NULL; i++) {
+        if (my_strlen(test[i]) - 1 != len)
+            return 1;
+    }
+    return 0;
+}
+
 int solver(char *filepath)
 {
     infos_t *map = malloc(sizeof(infos_t));
 
     map->size = get_size(filepath);
-    map->map_str_tab = load_map_char(filepath, map);
+    load_map_char(filepath, map);
     if (map->map_str_tab == NULL)
         return 84;
-    map->nb_cols = ((map->size - map->nb_rows)
-    / map->nb_rows);
     load_map_int(map);
     map->map_int_tab[map->nb_rows - 1][map->nb_cols - 1] = 1;
     find_shortest_path(map, map->nb_rows - 1,

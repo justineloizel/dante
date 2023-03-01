@@ -36,6 +36,7 @@ void load_map_int(infos_t *map_infos);
 int get_size(char *filepath);
 int get_nb_rows(char *filepath);
 int open_file(char const *filepath);
-char **load_map_char(char *filepath, infos_t *map_infos);
+void load_map_char(char *filepath, infos_t *map_infos);
 char **remove_end(char **map);
+int check_map_size(infos_t *map, char **test);
 #endif

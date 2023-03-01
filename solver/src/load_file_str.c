@@ -48,36 +48,38 @@ static int get_nb_line(char *filepath)
     return nb_line;
 }
 
-static char **check_errors(char **map)
+static char **check_errors(char **map, infos_t *map_infos)
 {
     if (map[0] == NULL)
         return NULL;
     if (check_content(map) == 1)
         return NULL;
+    if (check_map_size(map_infos, map) == 1)
+        return NULL;
     map = remove_end(map);
     return map;
 }
 
-char **load_map_char(char *filepath, infos_t *map_infos)
+void load_map_char(char *filepath, infos_t *map_infos)
 {
     int i = 0;
     char **map = NULL;
     FILE *fp;
     size_t len = 0;
     char *line = NULL;
-    int nb_line = 0;
 
-    nb_line = get_nb_line(filepath);
-    map_infos->nb_rows = nb_line;
+    map_infos->nb_rows = get_nb_line(filepath);
     fp = fopen(filepath, "r");
-    map = malloc(sizeof(char *) * (nb_line + 1));
+    map = malloc(sizeof(char *) * (map_infos->nb_rows + 1));
     while ((getline(&line, &len, fp)) != -1) {
         map[i] = line;
         line = NULL;
         i++;
     }
     map[i] = NULL;
-    map = check_errors(map);
+    map_infos->nb_cols = ((map_infos->size - map_infos->nb_rows)
+    / map_infos->nb_rows);
+    map = check_errors(map, map_infos);
+    map_infos->map_str_tab = map;
     fclose(fp);
-    return map;
 }
