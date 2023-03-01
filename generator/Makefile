@@ -11,11 +11,14 @@ CC = gcc
 VPATH += src/
 VPATH += src/binary_tree
 VPATH += src/create_imperfect_maze
+VPATH += src/dfs
 
 SRC += main.c
 SRC += generator.c
 SRC += binary_tree_algo.c
 SRC += create_imperfect_maze.c
+SRC += dfs.c
+SRC += dfs_list.c
 
 CFLAGS = -I ../include/ -Wall -Wextra
 
@@ -25,7 +28,7 @@ BUILD_DIR = build/
 
 NAME = generator
 
-DEBUG ?= 1
+DEBUG ?= 0
 ifeq ($(DEBUG), 1)
 	CFLAGS += -g
 endif

@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include "generator.h"
 #include "my.h"
+#include "myprintf.h"
 
 char *fill_line(int nb_column, int line_object)
 {
@@ -36,10 +37,10 @@ char **create_simple_map(int nb_line, int nb_column)
 
     if (maze == NULL)
         return NULL;
-    maze[0] = fill_line(nb_column,WAY);
+    maze[0] = fill_line(nb_column,WALLS);
     for (int i = 1; i < nb_line; i++) {
         if ((i % 2))
-            maze[i] = fill_line(nb_column, 0);
+            maze[i] = fill_line(nb_column, WALLS);
         else
             maze[i] = fill_line(nb_column, WALLS);
     }
@@ -51,14 +52,13 @@ int generator(int nb_line, int nb_column, int is_perfect)
 {
     char **maze = create_simple_map(nb_line, nb_column);
 
-    if (maze == NULL)
+    if (maze == NULL) {
         return 84;
-    create_perfect_maze(maze, nb_line, nb_column);
-    if (is_perfect) {
-        my_puttab(maze);
-        return 0;
     }
-    create_imperfect_maze(maze);
+    create_maze_with_dsf(maze, nb_column, nb_line);
+    if (!is_perfect)
+        create_imperfect_maze(maze);
     my_puttab(maze);
+    free_tab(maze);
     return 0;
 }
