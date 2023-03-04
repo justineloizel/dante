@@ -12,7 +12,6 @@ static int check_char(char **map, int i, int j)
     for (; map[i][j] != '\n'; j++) {
         if (map[i][j] != '*' && map[i][j] != 'X' &&
         map[i][j] != '\n' && map[i][j] != '\0') {
-            my_printf(" i = %i  j = %i-----%c\n", i, j, map[i][j]);
             return 1;
         }
     }
