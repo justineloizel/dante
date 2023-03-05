@@ -9,7 +9,7 @@
 
 static int check_char(char **map, int i, int j)
 {
-    for (; map[i][j] != '\n'; j++) {
+    for (; map[i][j] != '\0'; j++) {
         if (map[i][j] != '*' && map[i][j] != 'X' &&
         map[i][j] != '\n' && map[i][j] != '\0') {
             return 1;
@@ -51,10 +51,12 @@ static char **check_errors(char **map, infos_t *map_infos)
 {
     if (map[0] == NULL)
         return NULL;
-    if (check_content(map) == 1)
+    if (check_content(map) == 1) {
         return NULL;
-    if (check_map_size(map_infos, map) == 1)
+    }
+    if (check_map_size(map_infos, map) == 1) {
         return NULL;
+    }
     map = remove_end(map);
     return map;
 }
@@ -76,8 +78,7 @@ void load_map_char(char *filepath, infos_t *map_infos)
         i++;
     }
     map[i] = NULL;
-    map_infos->nb_cols = ((map_infos->size - map_infos->nb_rows)
-    / map_infos->nb_rows);
+    map_infos->nb_cols = (map_infos->size / map_infos->nb_rows);
     map = check_errors(map, map_infos);
     map_infos->map_str_tab = map;
     fclose(fp);

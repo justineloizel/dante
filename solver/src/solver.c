@@ -12,8 +12,11 @@ int check_map_size(infos_t *map, char **test)
     int len = map->nb_cols;
 
     for (int i = 0; test[i] != NULL; i++) {
-        if (my_strlen(test[i]) - 1 != len)
+        if (test[i + 1] == NULL && my_strlen(test[i]) == len)
+            return 0;
+        if (my_strlen(test[i]) - 1 != len) {
             return 1;
+        }
     }
     return 0;
 }

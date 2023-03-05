@@ -13,7 +13,7 @@ char **remove_end(char **map)
     int i = 0;
 
     for (; map[i] != NULL; i++) {
-        for (; map[i][j] != '\n'; j++);
+        for (; map[i][j] != '\n' && map[i][j] != '\0'; j++);
         map[i][j] = '\0';
     }
     return map;

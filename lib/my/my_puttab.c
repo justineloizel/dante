@@ -20,10 +20,12 @@ void free_tab(char **tab)
 int my_puttab(char **tab)
 {
     int count = 0;
+    int i;
 
-    for (int i = 0; tab[i]; i++) {
+    for (i = 0; tab[i + 1]; i++) {
         count += write(1, tab[i], my_strlen(tab[i]));
         count += write(1, "\n", 1);
     }
+    count += write(1, tab[i], my_strlen(tab[i]));
     return count;
 }
