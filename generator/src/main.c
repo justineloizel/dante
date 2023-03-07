@@ -14,7 +14,7 @@ int main(int ac, char **av)
         return 84;
     else if (ac == 4 && my_strcmp(av[3], "perfect") != 0)
         return 84;
-    if (generator(my_getnbr(av[1]), my_getnbr(av[2]), ac - 3) == 84)
+    if (generator(my_getnbr(av[2]), my_getnbr(av[1]), ac - 3) == 84)
         return 84;
     return 0;
 }
