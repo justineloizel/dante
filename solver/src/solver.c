@@ -5,6 +5,7 @@
 ** solver.c
 */
 
+#include <sys/resource.h>
 #include "solver.h"
 
 int check_map_size(infos_t *map, char **test)
@@ -43,6 +44,15 @@ int solver(char *filepath)
     return 0;
 }
 
+void upgrade_stack(void)
+{
+    struct rlimit rlim;
+
+    getrlimit(RLIMIT_STACK, &rlim);
+    rlim.rlim_cur = rlim.rlim_max;
+    setrlimit(RLIMIT_STACK, &rlim);
+}
+
 int main(int ac, char **av)
 {
     if (ac > 2) {
@@ -53,8 +63,10 @@ int main(int ac, char **av)
         my_printf("%z", "Too few arguments.\n");
         return 84;
     }
-    if (ac == 2)
+    if (ac == 2) {
+        upgrade_stack();
         if (solver(av[1]) != 0)
             return 84;
+    }
     return 0;
 }
