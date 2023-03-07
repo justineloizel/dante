@@ -35,7 +35,7 @@ int solver(char *filepath)
     map->map_int_tab[map->nb_rows - 1][map->nb_cols - 1] = 1;
     if (find_shortest_path(map, map->nb_rows - 1,
     map->nb_cols - 1) == 0) {
-        write(2, "No solution found", 18);
+        write(2, "no solution found.", 18);
         return 84;
     }
     fill_final_map(map, 0, 0);
