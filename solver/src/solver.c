@@ -30,13 +30,15 @@ int solver(char *filepath)
     load_map_char(filepath, map);
     if (map->map_str_tab == NULL ||
     map->map_str_tab[map->nb_rows -1][map->nb_cols - 1] == 'X' ||
-    map->map_str_tab[0][0] == 'X')
+    map->map_str_tab[0][0] == 'X') {
+        write(1, "no solution found", 17);
         return 84;
+    }
     load_map_int(map);
     map->map_int_tab[map->nb_rows - 1][map->nb_cols - 1] = 1;
     if (find_shortest_path(map, map->nb_rows - 1,
     map->nb_cols - 1) == 0) {
-        write(1, "no solution found.", 18);
+        write(1, "no solution found", 17);
         return 84;
     }
     fill_final_map(map, 0, 0);
