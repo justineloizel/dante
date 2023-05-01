@@ -2,7 +2,7 @@
 
 C program to generate and solve mazes
 
-### Prerequisites
+## Prerequisites
 
 - gcc
 - make
